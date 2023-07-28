@@ -6,6 +6,7 @@
 </head>
 <body>
   <h1>Home Page</h1>
+
   <form>
     <label for="data1">Submit Text</label>
     <input type="text" id="data1" name="data1"><br><br>
@@ -19,9 +20,7 @@
     <button type="button" onclick="clearCookie()">Clear all </button><br><br>
     <button type="button" onclick="logout()">Logout</button>
   </form>
-
- 
-
+  <!-- JS logic -->
   <script>
     function saveData() {
       const data1 = document.getElementById('data1').value;
