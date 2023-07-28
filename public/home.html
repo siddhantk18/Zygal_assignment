@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Home Page</title>
+</head>
+<body>
+  <h1>Home Page</h1>
+  <form>
+    <label for="data1">Submit Text</label>
+    <input type="text" id="data1" name="data1"><br><br>
+    <button type="button" onclick="saveData()">Submit </button><br><br>
+    <label for="search">Search Text</label>
+    <input type="text" id="search" name="search">
+    <button type="button" onclick="searchData()">Search</button><br><br>
+    <div id="search-results"></div>
+    <button type="button" onclick="clearCookie()">Clear All COOKIE</button><br><br>
+    <button type="button" onclick="logout()">Logout</button>
+  </form>
+
+ 
+
+  <script>
+    function saveData() {
+      const data1 = document.getElementById('data1').value;
+      document.cookie = `data1=${data1}; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/`;
+    }
+
+    function searchData() {
+      const search = document.getElementById('search').value;
+      const cookies = document.cookie.split('; ');
+      let result = '';
+      cookies.forEach((cookie) => {
+        const [name, value] = cookie.split('=');
+        if (name === 'data1' && value.includes(search)) {
+          result += `${value}<br>`;
+        }else{
+            return "no message found"
+        }
+      });
+      document.getElementById('search-results').innerHTML = result;
+    }
+
+    function clearCookie() {
+      document.cookie = 'data1=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+    }
+
+    function logout() {
+      document.cookie = 'user=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+      window.location.href = '/logout';
+    }
+  </script>
+</body>
+</html>
