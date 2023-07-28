@@ -5,7 +5,7 @@ Doing this assignment is very much helpfull for me to brushup my knowledge and a
 ---
 ## Requirements
 
-For development, you will only need Node.js and a node global package, installed in your environement.
+For Testing and Development, you will only need Node.js and a node global package, installed in your environement.
 
 - #### Other Operating Systems
   You can find more information about the installation on the [official Node.js website](https://nodejs.org/) and the [official NPM website](https://npmjs.org/).
@@ -26,9 +26,9 @@ If you need to update `npm`, you can make it using `npm`! Cool right? After runn
 
 ## Install
 
-    $ git clone https://github.com/YOUR_USERNAME/PROJECT_TITLE
-    $ cd PROJECT_TITLE
-    $ yarn install
+    $ git clone https://github.com/siddhantk18/Zygal_assignment.git
+    $ cd Zygal_assignment
+    $ npm install
 
 
 ## Running the project
