@@ -2,17 +2,17 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const users = require('./usersData'); // Import user data from usersData.js
+const users = require('./usersData'); 
 const fs = require('fs');
 
 const app = express();
 const PORT = 3000;
 
-// Middleware
+// ****Middleware****
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-// Login route
+// ****Login route****
 app.get('/login', (req, res) => {
   res.sendFile(__dirname + '/public/login.html');
 });
@@ -24,11 +24,12 @@ app.post('/login', (req, res) => {
     res.cookie('user', email);
     res.redirect('/home'); // Redirect to the home page after successful login
   } else {
-    res.redirect('/login');
+    res.status(401).redirect('/login');
+    return 
   }
 });
 
-// Home page route
+// ****Home page route****
 app.get('/home', (req, res) => {
   const user = req.cookies.user;
   if (!user) {
@@ -38,12 +39,13 @@ app.get('/home', (req, res) => {
   }
 });
 
-// Logout route
+// ****Logout route****
 app.get('/logout', (req, res) => {
   res.clearCookie('user');
   res.redirect('/login');
 });
 
+// Defining Port
 app.listen(PORT, () => {
   console.log(`Server started on http://localhost:${PORT}`);
 });

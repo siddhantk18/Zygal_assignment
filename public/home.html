@@ -11,10 +11,12 @@
     <input type="text" id="data1" name="data1"><br><br>
     <button type="button" onclick="saveData()">Submit </button><br><br>
     <label for="search">Search Text</label>
-    <input type="text" id="search" name="search">
+    <input type="text" id="search" name="search"><br><br>
     <button type="button" onclick="searchData()">Search</button><br><br>
-    <div id="search-results"></div>
-    <button type="button" onclick="clearCookie()">Clear All COOKIE</button><br><br>
+    <div id="search-results">
+      <div id="search-messages"></div>
+    </div>
+    <button type="button" onclick="clearCookie()">Clear all </button><br><br>
     <button type="button" onclick="logout()">Logout</button>
   </form>
 
@@ -30,19 +32,28 @@
       const search = document.getElementById('search').value;
       const cookies = document.cookie.split('; ');
       let result = '';
+      let found = false;
+
       cookies.forEach((cookie) => {
         const [name, value] = cookie.split('=');
         if (name === 'data1' && value.includes(search)) {
           result += `${value}<br>`;
-        }else{
-            return "no message found"
+          found = true;
         }
       });
-      document.getElementById('search-results').innerHTML = result;
+
+      // Displaying the searched result with error handling also
+      document.getElementById('search-results').innerHTML = found ? result : 'No massage found';
     }
 
     function clearCookie() {
       document.cookie = 'data1=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+
+      // Reset the input fields
+      // after clearing all the cookies the all input should be empty
+      document.getElementById('data1').value = '';
+      document.getElementById('search').value = '';
+      document.getElementById('search-results').innerHTML = '';
     }
 
     function logout() {
